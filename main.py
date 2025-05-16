@@ -176,7 +176,7 @@ home_remedies = {
 }
 
 # MongoDB Client setup
-client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://localhost:27017")  # Assuming MongoDB is running locally
+client = motor.motor_asyncio.AsyncIOMotorClient("mongodb://localhost:"host_number"")  # Assuming MongoDB is running locally
 db = client["greenprescribe"]  # Database name
 feedback_collection = db["feedback"]  # Collection name
 
