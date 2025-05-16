@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feedback - GreenPrescribe 🌿</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #ffffff);
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    h1 { color: #2e7d32; text-align: center; }
+    p  { text-align: center; color: #666; }
+    textarea {
+      width: 100%; height: 150px; padding: 12px; margin-top: 15px;
+      border-radius: 8px; border: 1px solid #ccc; font-size: 16px; resize: none;
+    }
+    button {
+      width: 100%; padding: 15px; background-color: #43a047; color: white;
+      border: none; border-radius: 8px; font-size: 18px; margin-top: 20px;
+      cursor: pointer; transition: background 0.3s;
+    }
+    button:hover { background-color: #388e3c; }
+    #response-message {
+      margin-top: 20px; text-align: center; font-weight: bold;
+      color: #2e7d32; font-size: 20px;
+    }
+    #emoji {
+      font-size: 50px; text-align: center; margin-top: 10px;
+    }
+    .admin-link {
+      display: block; text-align: center; margin-top: 30px;
+      text-decoration: none; color: #388e3c; font-weight: bold;
+    }
+    .admin-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>We Value Your Feedback! 🌟</h1>
+    <p>Tell us how well the recommendation worked for you!</p>
+
+    <form id="feedback-form">
+      <textarea id="feedback" placeholder="Write your feedback here..." required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <div id="response-message"></div>
+    <div id="emoji"></div>
+
+    <a href="admin.html" class="admin-link">Go to Admin Dashboard 📊</a>
+  </div>
+
+  <script>
+    document
+      .getElementById('feedback-form')
+      .addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const feedbackText = document.getElementById('feedback').value;
+        const responseMessage = document.getElementById('response-message');
+        const emojiDiv = document.getElementById('emoji');
+
+        try {
+          const response = await fetch('http://127.0.0.1:8000/submit_feedback/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ feedback: feedbackText })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+
+            responseMessage.textContent = '✅ Thank you for your feedback!';
+            document.getElementById('feedback-form').reset();
+
+            if (data.sentiment === 'positive') {
+              emojiDiv.textContent = '😊';
+            } else {
+              emojiDiv.textContent = '😔';
+            }
+          } else {
+            responseMessage.textContent = '❌ Failed to send feedback. Please try again.';
+            emojiDiv.textContent = '';
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          responseMessage.textContent = '❌ An error occurred. Please try again.';
+          emojiDiv.textContent = '';
+        }
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - GreenPrescribe 📊</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e8f5e9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #2e7d32;
+        }
+        canvas {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Admin Dashboard 📊</h1>
+        <canvas id="feedbackChart"></canvas>
+    </div>
+
+    <script>
+        // Dummy data for now (you'll fetch from backend later)
+        const feedbackData = {
+            positive: 85,  // 85 positive feedbacks
+            negative: 15   // 15 negative feedbacks
+        };
+
+        const ctx = document.getElementById('feedbackChart').getContext('2d');
+        const feedbackChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Positive 😊', 'Negative 😔'],
+                datasets: [{
+                    label: 'Feedback Sentiment',
+                    data: [feedbackData.positive, feedbackData.negative],
+                    backgroundColor: ['#66bb6a', '#ef5350'],
+                    borderColor: ['#ffffff', '#ffffff'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
