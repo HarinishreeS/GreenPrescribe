@@ -60,7 +60,7 @@ pipeline = make_pipeline(CountVectorizer(), MultinomialNB())
 pipeline.fit(X_train, Y_train)
 
 # Save the trained pipeline
-model_path = 'C:/Users/Harinishree/OneDrive/Documents/GreenPrescribe/greenprescribe-backend/models/ml/symptom_model.pkl'
+model_path = 'C:file_path_symptom_analyzer.pkl'
 
 with open(model_path, 'wb') as f:
     pickle.dump(pipeline, f)
