@@ -26,7 +26,7 @@ app.use('/api/medicines', medicineRoutes);
 app.use('/api/ml', mlRoutes);
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || "port_number";
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 
