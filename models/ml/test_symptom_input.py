@@ -2,8 +2,8 @@ import pickle
 import os
 
 # Paths to the model and vectorizer
-model_path = 'C:/Users/Harinishree/OneDrive/Documents/GreenPrescribe/greenprescribe-backend/models/ml/symptom_model.pkl'
-vectorizer_path = 'C:/Users/Harinishree/OneDrive/Documents/GreenPrescribe/greenprescribe-backend/models/ml/symptom_vectorizer.pkl'
+model_path = 'C:file_path_symptom_model.pkl'
+vectorizer_path = 'C:file_path_symptom_vectorizer.pkl'
 
 # Ensure that the files exist before loading
 if not os.path.exists(model_path):
