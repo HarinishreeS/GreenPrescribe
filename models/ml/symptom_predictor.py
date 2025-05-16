@@ -3,7 +3,7 @@
 import pickle
 
 # Load the trained symptom analyzer pipeline
-model_path = 'C:/Users/Harinishree/OneDrive/Documents/GreenPrescribe/greenprescribe-backend/models/ml/symptom_model.pkl'
+model_path = 'C:file_path_symptom_model.pkl'
 
 with open(model_path, 'rb') as f:
     symptom_pipeline = pickle.load(f)
