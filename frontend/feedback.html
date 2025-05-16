@@ -72,7 +72,7 @@
         const emojiDiv = document.getElementById('emoji');
 
         try {
-          const response = await fetch('http://127.0.0.1:8000/submit_feedback/', {
+          const response = await fetch('http://"port_number"/submit_feedback/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ feedback: feedbackText })
